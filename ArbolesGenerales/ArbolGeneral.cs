@@ -84,40 +84,36 @@ namespace ArbolesGenerales
             Recorrer(nodo, ref posicion, ref datos);
             return datos;
         }
-        public Nodo Buscar(string dato, Nodo nodoBusqueda = null)
+        public Nodo Buscar(string dato, Nodo nodoBusqueda)
         {
-            if (nodoBusqueda == null)
+            if (nodoBusqueda is null)
             {
                 nodoBusqueda = raiz;
             }
+
             if (nodoBusqueda.Dato.ToUpper() == dato.ToUpper())
             {
                 return nodoBusqueda;
             }
+
             if (nodoBusqueda.Hijo != null)
             {
                 Nodo nodoEncontrado = Buscar(dato, nodoBusqueda.Hijo);
-                if (nodoEncontrado != null)
+                if (nodoEncontrado is null)
                 {
                     return nodoEncontrado;
                 }
-                if(nodoBusqueda.Hermano != null)
-                {
-                    Nodo nodoEncontrado = Buscar(dato, nodoBusqueda.Hermano);
-
-                    if (nodoEncontrado != null)
-                    {
-                        return nodoEncontrado;
-                    }
-                }
-                if(nodoBusqueda.Hermano != null)
-                {
-                    return
-                }
-                   
             }
+
+            if (nodoBusqueda.Hermano != null)
+            {
+                Nodo nodoEncontrado = Buscar(dato, nodoBusqueda.Hermano);
+                if (nodoEncontrado is null)
+                {
+                    return nodoEncontrado;
+                }
+            }
+            return null;
         }
     }
 }
-
-
